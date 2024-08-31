@@ -1,0 +1,48 @@
+---
+title: "Trabajo Final de Aprendizaje Automático"
+subtitle: "Universidad de Cuenca"
+author: "Jaime Paúl Arévalo Armijos, Esteban Darío Vizhñay Enderica"
+date: 'XX-09-2024'
+# bibliography: bibliografia.bib
+# csl: apa.csl   
+linkcolor: blue
+urlcolor: blue
+output:
+  pdf_document: 
+    fig_caption: yes
+    # latex_engine: xelatex
+header-includes:
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{bold-extra}
+  - \usepackage{adjustbox}
+  - \usepackage{graphicx}
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+# Abstract
+
+
+
+# Introducción
+
+Debido a que todas las variables en conjunto no muestran una correlación clara, se realiza un enfoque en el análisis del dominio del problema, en donde el propósito del trabajo será encontrar la percepción que tienen los estiantes sobre los profesores.
+
+# Trabajos relacionados
+
+
+
+# Descripción del dataset
+
+
+
+# Metodología
+
+# Resultados y Discusión
+
+# Conclusión
+
+# Contribuciones
+
+# Referencias
