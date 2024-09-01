@@ -1,0 +1,162 @@
+---
+title: "Trabajo Final de Aprendizaje Automático"
+subtitle: "Universidad de Cuenca"
+author: "Jaime Paúl Arévalo Armijos, Esteban Darío Vizhñay Enderica"
+date: 'XX-09-2024'
+# bibliography: bibliografia.bib
+# csl: apa.csl   
+linkcolor: blue
+urlcolor: blue
+output:
+  pdf_document: 
+    fig_caption: yes
+    # latex_engine: xelatex
+header-includes:
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{bold-extra}
+  - \usepackage{adjustbox}
+  - \usepackage{graphicx}
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Abstract
+
+Introducción (0.5 páginas): contexto, necesidad (por que el problema es
+relevante), tarea (que es lo que se hizo para solucionar el problema e
+indicar claramente las entradas y salidas del problema), objetivo
+(objetivo general del proyecto).
+
+# Introducción
+
+Las encuestas o cuestionarios de evaluación son uno de los métodos más
+utilizados para medir el desempeño de la planta docente de un instituto
+de educación. Esto permite a los docentes conocer cómo sus estudiantes
+perciben sus métodos de enseñanza y al mismo tiempo a la institución
+conocer la pedagogía de cada docente. El instituto a partir de los
+resultados podría considerar acciones correctivas, llamadas de atención,
+compensaciones, capacitaciones para mejorar la enseñanza de la planta
+docente, de igual manera los docentes pueden conocer como son
+identificados y caracterizados permitiendo trabajar en ellos mismos para
+mejorar o cambiar su pedagogía. Las encuestas, particularmente, pueden
+ser imparciales o sesgadas, debido a que cada estudiante es libre de
+elegir cómo calificar a sus docentes. Los resultados de la encuesta
+utilizada en este trabajo serán analizados de manera detallada, no solo
+con base en los resultados, sino también mediante un análisis
+exploratorio de datos y la aplicación de un modelo de clusterización.
+Nuestro objetivo es encontrar la percepción que tienen los estudiantes
+de sus docentes mediante un análisis del dominio del problema.
+
+Trabajos relacionados (0.5 páginas): una revisión breve de trabajos
+similares.
+
+# Trabajos relacionados
+
+Como lo afirma (Winer, DiGenova, Costopoulos, & Cardoso, 2016) las
+encuestas de evaluación son imparciales y confiables, aunque esto puede
+ser debatible y generar polémica en cuanto a la validez de las
+respuestas estudiantiles. Sin embargo (Groen & Herry, 2017) mencionan
+que las encuestas brindan resultados sesgados y pocos precisos, esto se
+puede apoyar al comportamiento descrito por (Maurer, 2006) que indica
+que los estudiantes con buenas notas califican al docente de manera
+positiva y manera negativa si poseen malas notas. De igual manera
+(Zumbach & Funke, 2014) indica que el estado de ánimo es un factor
+importante en las respuestas de las encuestas aplicadas. El análisis
+exploratorio de datos (ADA) como lo indica (Dhar, 2013) permite a los
+líderes educativos analizar más a fondo sus datos, en lugar de centrarse
+simplemente en interpretar resultados, el uso de ADA y otras técnicas de
+ciencia de datos combinan en una amplia gama de conjuntos de habilidades
+(análisis básico, estadísticas, modelos de aprendizaje e inteligencia
+artificial) permitiendo predecir el impacto futuro de una decisión con
+base en sus datos. Lo más importante para el uso eficaz de ADA es el
+conocimiento subyacente del profesional que da significado a los
+resultados e impulsa la necesidad de cambio necesario. (Bill & Melinda
+Gates Foundation, 2015; Dhar, 2013; Tichnor-Wagner, Wachen, Cannata y
+Cohen-Vogel, 2017)
+
+# Descripción del dataset
+
+El conjunto de datos utilizado en este trabajo esta compuesto por 33
+columnas, las cuales son descritas en la siguiente tabla:
+
+| Nombre     | Descripción                                                                                                                                         | Tipo     |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| instr      | Identificador del docente                                                                                                                           | Numérico |
+| class      | Código del curso                                                                                                                                    | Númerico |
+| repeat     | Número de veces que el estudiante tomo el curso                                                                                                     | Númerico |
+| attendance | Código del nivel de asistencia                                                                                                                      | Númerico |
+| difficulty | Nivel de dificultad del curso percibida por el estudiante                                                                                           | Númerico |
+| Q1         | El contenido del curso semestral, el método de enseñanza y el sistema de evaluación se proporcionaron desde el inicio.                              | Númerico |
+| Q2         | Los objetivos del curso se establecieron claramente desde el inicio del período.                                                                    | Númerico |
+| Q3         | El curso valió la cantidad de créditos que se le asignaron.                                                                                         | Númerico |
+| Q4         | El curso se impartió de acuerdo con el programa anunciado el primer día de clase.                                                                   | Númerico |
+| Q5         | Los debates en clase, las tareas, las aplicaciones y los estudios fueron satisfactorios.                                                            | Númerico |
+| Q6         | El libro de texto y otros recursos del curso fueron suficientes y actualizados.                                                                     | Númerico |
+| Q7         | El curso permitió trabajo de campo, aplicaciones, laboratorio, debate y otros estudios.                                                             | Númerico |
+| Q8         | Los cuestionarios, las tareas, los proyectos y los exámenes contribuyeron a facilitar el aprendizaje.                                               | Númerico |
+| Q9         | Disfruté mucho de la clase y estaba ansioso por participar activamente durante las conferencias.                                                    | Númerico |
+| Q10        | Mis expectativas iniciales sobre el curso se cumplieron al final del período o año.                                                                 | Númerico |
+| Q11        | El curso fue relevante y beneficioso para mi desarrollo profesional.                                                                                | Númerico |
+| Q12        | El curso me ayudó a ver la vida y el mundo con una nueva perspectiva.                                                                               | Númerico |
+| Q13        | El conocimiento del instructor era relevante y actualizado.                                                                                         | Númerico |
+| Q14        | El instructor llegó preparado para las clases.                                                                                                      | Númerico |
+| Q15        | El instructor enseñó de acuerdo con el plan de lecciones anunciado.                                                                                 | Númerico |
+| Q16        | El instructor se comprometió con el curso y fue comprensible.                                                                                       | Númerico |
+| Q17        | El instructor llegó a tiempo a las clases.                                                                                                          | Númerico |
+| Q18        | El instructor tiene una presentación/discurso fluido y fácil de seguir.                                                                             | Númerico |
+| Q19        | El instructor hizo un uso eficaz de las horas de clase.                                                                                             | Númerico |
+| Q20        | El instructor explicó el curso y estaba ansioso por ayudar a los estudiantes.                                                                       | Númerico |
+| Q21        | El instructor demostró un enfoque positivo hacia los estudiantes.                                                                                   | Númerico |
+| Q22        | El instructor fue abierto y respetuoso con las opiniones de los estudiantes sobre el curso.                                                         | Númerico |
+| Q23        | El instructor alentó la participación en el curso.                                                                                                  | Númerico |
+| Q24        | El instructor asignó tareas/proyectos relevantes y ayudó/guió a los estudiantes.                                                                    | Númerico |
+| Q25        | El instructor respondió preguntas sobre el curso dentro y fuera del curso.                                                                          | Númerico |
+| Q26        | El sistema de evaluación del instructor (preguntas de mitad de curso y finales, proyectos, tareas, etc.) midió eficazmente los objetivos del curso. | Númerico |
+| Q27        | El instructor proporcionó soluciones a los exámenes y las discutió con los estudiantes.                                                             | Númerico |
+| Q28        | El instructor trató a todos los estudiantes de manera correcta y objetiva.                                                                          | Númerico |
+
+: Columnas conjunto de datos
+
+A partir de las columnas anteriores, se ha seleccionado las siguientes columnas que van en dirección al objetivo de este trabajo: **instr, Q13-Q28**. La primera columna servirá como etiqueta de nuestro modelo de clusterización. Las preguntas desde la 13 hasta la 28 se centran en aspectos clave de la enseñanza del docente como conocimiento, preparación, comprensión, fluidez de enseñanza, participación, forma de evaluar a los estudiantes. Las preguntas permiten una evaluación integra de la calidad de la enseñanza y facilita la identificación de patrones en la percepción estudiantil, lo cual es fundamental para la implementación efectiva del modelo de clusterización.
+
+# Metodología
+
+# Resultados y Discusión
+
+# Conclusión
+
+# Contribuciones
+
+# Referencias
+
+Winer, L., DiGenova, L., Costopoulos, A., & Cardoso, K. (2016).
+Addressing common concerns about online student ratings of instruction:
+A research-informed approach. Canadian Journal of Higher Education/Revue
+canadienne d’enseignement supérieur, 46(4), 115–131.
+
+Groen, J. F., & Herry, Y. (2017). The online evaluation of courses:
+Impact on participation rates and evaluation scores. Canadian Journal of
+Higher Education/Revue canadienne d’enseignement supérieur, 47(2),
+106–120.
+
+Maurer, T. W. (2006). Cognitive dissonance or revenge? Student grades
+and course evaluations. Teaching of Psychology, 33, 176–179.
+
+Zumbach, J., & Funke. J. (2014). Influences of Mood on Academic Course
+Evaluations. Practical Assessment, Research & Evaluation, 19(4), 1–12.
+Retrieved from <http://pareonline.net/getvn/getvn.asp?v=19&n=4>.
+
+Dhar, V. (2013). Data science and prediction. Communications of the ACM,
+56(12), 64–73. <doi:10.1145/2500499>
+
+Bill & Melinda Gates Foundation. (2015). Making data work for teachers
+and students. Seattle, WA: Bill & Melinda Gates Foundation.
+
+Tichnor-Wagner, A., Wachen, J., Cannata, M., & Cohen-Vogel, L. (2017).
+Continuous improvement in the public school context: Understanding how
+educators respond to plando-study-act cycles. Journal of Education
+Change, 18(4), 465–494. <doi:10.1007/s10833-017-9301-4>.
