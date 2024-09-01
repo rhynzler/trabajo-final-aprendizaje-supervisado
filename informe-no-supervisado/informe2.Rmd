@@ -121,7 +121,7 @@ columnas, las cuales son descritas en la siguiente tabla:
 
 : Columnas conjunto de datos
 
-A partir de las columnas anteriores, se ha seleccionado las siguientes columnas que van en dirección al objetivo de este trabajo: **instr, Q13-Q28**. La primera columna servirá como etiqueta de nuestro modelo de clusterización. Las preguntas desde la 13 hasta la 28 se centran en aspectos clave de la enseñanza del docente como conocimiento, preparación, comprensión, fluidez de enseñanza, participación, forma de evaluar a los estudiantes.No se realizo ningún tipo de preprocesamiento o transformación a los datos ya que esta se encuentra limpia y sin valores ausentes, además las preguntas toman valores desde el 1 al 5. Donde se asigno 1 = Nunca, 2 = Casi nunca, 3 = A veces, 4 = Caso siempre, 5 = Siempre.
+A partir de las columnas anteriores, se ha seleccionado las siguientes columnas que van en dirección al objetivo de este trabajo: **instr, Q13-Q28**. La primera columna servirá como etiqueta de nuestro modelo de clusterización. Las preguntas desde la 13 hasta la 28 se centran en aspectos clave de la enseñanza del docente como conocimiento, preparación, comprensión, fluidez de enseñanza, participación, forma de evaluar a los estudiantes.No se realizo ningún tipo de preprocesamiento o transformación a los datos ya que esta se encuentra limpia y sin valores ausentes, además las preguntas toman valores desde el 1 al 5. Donde se asigno 1 = Nunca, 2 = Casi nunca, 3 = A veces, 4 = Casi siempre, 5 = Siempre.
 
 # Metodología
 
