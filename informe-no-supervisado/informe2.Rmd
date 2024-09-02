@@ -124,7 +124,25 @@ A partir de las columnas anteriores, se han seleccionado las siguientes columnas
 
 # Metodología
 
+Para el pre-procesamiento del conjunto de datos a analizar, es importante notar que ninguna de las variables presenta datos faltantes o ausentes. Esto es un aspecto positivo que simplifica el análisis, ya que no es necesario realizar imputaciones ni eliminar registros incompletos. No obstante, dado que las variables se encuentran en una escala Likert, los  datos de estudio son ordinales. Este tipo de datos no solo implica que los valores tienen un orden específico, sino que también es crucial identificar que las diferencias entre los puntos de la escala no son necesariamente equidistantes. Esto sugiere que, aunque las respuestas estén estandarizadas en términos de escala, su naturaleza ordinal requiere un manejo cuidadoso en el modelado, asegurando que las técnicas utilizadas respeten la estructura inherente de los datos. Además, al trabajar con modelos de aprendizaje no supervisado, es fundamental considerar la normalización o estandarización adecuada para mejorar la eficacia de los algoritmos aplicados, ya que el rango limitado y la escala uniforme pueden influir en los resultados de clustering o reducción de dimensionalidad, entre otros enfoques.
+
+La gráfica del método del codo muestra un descenso pronunciado en la suma de cuadrados dentro del cluster a medida que aumenta el número de clusters. El punto donde la disminución de deja de ser tan pronunciada indica el número óptimo de clusters, en el caso del conjunto de datos seleccionado, la gráfica recomienda que los valores para el número de clusters puede ser 3 o 4. Así que se considera tales valores para el análisis para de esta manera identificar y evaluar cual produce los clusters más significativos y útiles para aplicarlo sobre los datos.
+
 # Resultados y Discusión
+
+Con base en los resultados obtenidos mediante el análisis de t-SNE y K-Means sobre los datos analizados, se pueden extraer varias conclusiones generales:
+
+Diversidad de Estilos de Enseñanza: Los clusters generados indican la presencia de diferentes estilos de enseñanza entre los docentes evaluados. Algunos docentes se agrupan en función de características como la organización y preparación (por ejemplo, aquellos con altas puntuaciones en preguntas como Q13-Q15), mientras que otros destacan en áreas relacionadas con la interacción y apoyo a los estudiantes (reflejado en preguntas como Q20-Q23).
+
+Áreas de Mejora Identificadas: El análisis permite identificar áreas específicas donde un grupo de docentes podría necesitar mejorar. Por ejemplo, si un cluster agrupa a docentes con puntuaciones bajas en la utilización efectiva del tiempo de clase (Q19), esto podría señalar la necesidad de estrategias formativas dirigidas a mejorar en ese aspecto.
+
+Evaluación Global del Desempeño: Los docentes agrupados en clusters con puntuaciones altas en la mayoría de las preguntas pueden considerarse como aquellos con un desempeño globalmente positivo. Estos docentes no solo cumplen con los aspectos básicos de la enseñanza, sino que también destacan en la entrega de contenido, la interacción con estudiantes y la aplicación de evaluaciones efectivas.
+
+Correlaciones y Comportamientos Consistentes: El análisis sugiere que ciertos comportamientos están correlacionados. Por ejemplo, docentes que son bien evaluados en términos de preparación también tienden a utilizar el tiempo de clase de manera efectiva. Esto indica que los estudiantes valoran un enfoque holístico en la enseñanza, donde la preparación y la ejecución van de la mano.
+
+Segmentación y Estrategias Personalizadas: La segmentación de los docentes en diferentes clusters permite la creación de estrategias de desarrollo profesional más personalizadas. Los programas de formación pueden ser adaptados para abordar las necesidades específicas de cada grupo, mejorando así la calidad de la enseñanza en toda la institución.
+
+En resumen, el análisis de los datos de la encuesta ha proporcionado una visión clara de los patrones de enseñanza entre los docentes y ha destacado áreas clave para mejorar. Estas conclusiones pueden guiar la toma de decisiones para fortalecer la formación docente y, en última instancia, mejorar la experiencia de aprendizaje de los estudiantes.
 
 # Conclusión
 
