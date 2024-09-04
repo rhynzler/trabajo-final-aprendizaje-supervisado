@@ -2,7 +2,7 @@
 title: "Trabajo Final de Aprendizaje Automático"
 subtitle: "Universidad de Cuenca"
 author: "Jaime Paúl Arévalo Armijos, Esteban Darío Vizhñay Enderica"
-date: 'XX-09-2024'
+date: '04-09-2024'
 # bibliography: bibliografia.bib
 # csl: apa.csl   
 linkcolor: blue
@@ -128,25 +128,52 @@ Para el pre-procesamiento del conjunto de datos a analizar, es importante notar 
 
 La gráfica del método del codo muestra un descenso pronunciado en la suma de cuadrados dentro del cluster a medida que aumenta el número de clusters. El punto donde la disminución de deja de ser tan pronunciada indica el número óptimo de clusters, en el caso del conjunto de datos seleccionado, la gráfica recomienda que los valores para el número de clusters puede ser 3 o 4. Así que se considera tales valores para el análisis para de esta manera identificar y evaluar cual produce los clusters más significativos y útiles para aplicarlo sobre los datos.
 
+En el análisis exploratorio de datos, procedimos a examinar las distribuciones de las variables relevantes y realizar una comparación conjunta de las mismas, con el objetivo de extraer conclusiones preliminares alineadas con el propósito de evaluación intrínseco de cada pregunta. Para visualizar las distribuciones de las respuestas, se utilizó un gráfico de violín que permite comparar directamente la distribución de respuestas entre las diferentes preguntas. Esta herramienta gráfica facilita la identificación de patrones, tendencias y posibles áreas de interés o mejora al observar cómo varían las percepciones de los estudiantes en relación con cada aspecto evaluado.
+
+```{r, echo=FALSE, fig.pos='H', out.width="100%"}
+knitr::include_graphics("violin.png")
+```
+
+Este gráfico elimina la necesidad de un análisis descriptivo exhaustivo, ya que las medias se sitúan en un rango estrecho de aproximadamente 3.1 a 3.4, con una varianza cercana a 1.2. Estos patrones se reflejan claramente en el gráfico de violín, donde se observa una mayor densidad de respuestas en los valores 3 y 4 para cada pregunta.
+
+La simetría de las distribuciones indica que las respuestas están distribuidas de manera uniforme alrededor de la mediana, lo que sugiere que los estudiantes tienen una opinión equilibrada sobre los aspectos del curso y los instructores. Esto sugiere una satisfacción general con los docentes. Es importante destacar que en preguntas como la 13, 14, 17 y 28 se observa una ligera concentración de respuestas entre los valores 4 y 5, lo que podría indicar que los estudiantes valoran positivamente el conocimiento del instructor, su preparación, puntualidad y trato justo. Estos aspectos reflejan un alto nivel de compromiso por parte de los docentes.
+
+Por otro lado, preguntas como la 16, 18 y 19 muestran una mayor dispersión en las respuestas, lo que indica un cierto grado de variabilidad en la percepción de los estudiantes sobre la claridad en la exposición de los temas del curso y la capacidad del instructor para ser comprendido. Esta variabilidad sugiere que estas preguntas están más sujetas a interpretaciones personales o a diferencias en las expectativas de los estudiantes respecto a los profesores y los cursos. La pregunta 19, que evalúa el uso efectivo del tiempo en clase, aunque subjetiva, también puede señalar un área donde los estudiantes perciben un posible margen de mejora.
+
 # Resultados y Discusión
 
-Con base en los resultados obtenidos mediante el análisis de t-SNE y K-Means sobre los datos analizados, se pueden extraer varias conclusiones generales:
+Se determinó el número recomendado de clústeres en los que se podría dividir el conjunto de datos utilizando el Silhouette Score y el Davies-Bouldin Score, obteniendo resultados que sugerían entre 8 y 9 clústeres. Sin embargo, identificar características significativas y con alto grado de interpretación en un número tan elevado de clústeres se complicaría, y no proporcionaría una recomendación clara para el análisis del problema. Se aplicaron algoritmos de reducción de dimensionalidad como PCA y t-SNE. Este último mostró una mayor separación entre los clústeres, especialmente al ajustar hiperparámetros como el `perplexity`, lo que permitió observar divisiones claras en tres o cuatro clústeres, dependiendo del valor del hiperparámetro.
 
-Diversidad de Estilos de Enseñanza: Los clusters generados indican la presencia de diferentes estilos de enseñanza entre los docentes evaluados. Algunos docentes se agrupan en función de características como la organización y preparación (por ejemplo, aquellos con altas puntuaciones en preguntas como Q13-Q15), mientras que otros destacan en áreas relacionadas con la interacción y apoyo a los estudiantes (reflejado en preguntas como Q20-Q23).
+Se aplicaron varios modelos de clustering a los datos utilizando los componentes obtenidos en los pasos anteriores. Los modelos utilizados fueron K-Means, DBSCAN, BIRCH, Propagación de Afinidad y Clustering Jerárquico con el método de Ward, apoyado por un dendrograma. La reducción de dimensionalidad con PCA y t-SNE mostró que al usar dos componentes con alta representatividad (según la gráfica de varianza acumulada), los grupos aparecían muy juntos y correlacionados, lo que dificultaba distinguir los clústeres en la representación gráfica en dos dimensiones. En la siguiente gráfica se muestran los clusters obtenidos utilizando el algoritmo de K-Means.
 
-Áreas de Mejora Identificadas: El análisis permite identificar áreas específicas donde un grupo de docentes podría necesitar mejorar. Por ejemplo, si un cluster agrupa a docentes con puntuaciones bajas en la utilización efectiva del tiempo de clase (Q19), esto podría señalar la necesidad de estrategias formativas dirigidas a mejorar en ese aspecto.
+```{r, echo=FALSE, fig.pos='H', out.width="60%", fig.align='center'}
+knitr::include_graphics("kmeans.png")
+```
 
-Evaluación Global del Desempeño: Los docentes agrupados en clusters con puntuaciones altas en la mayoría de las preguntas pueden considerarse como aquellos con un desempeño globalmente positivo. Estos docentes no solo cumplen con los aspectos básicos de la enseñanza, sino que también destacan en la entrega de contenido, la interacción con estudiantes y la aplicación de evaluaciones efectivas.
 
-Correlaciones y Comportamientos Consistentes: El análisis sugiere que ciertos comportamientos están correlacionados. Por ejemplo, docentes que son bien evaluados en términos de preparación también tienden a utilizar el tiempo de clase de manera efectiva. Esto indica que los estudiantes valoran un enfoque holístico en la enseñanza, donde la preparación y la ejecución van de la mano.
+Por esta razón, K-Means se destacó como el algoritmo más adecuado para identificar clústeres, aunque BIRCH y el método de Ward también produjeron resultados similares. K-Means fue particularmente eficiente, ya que no se observaron patrones irregulares en la representación en dos dimensiones, y su enfoque basado en centroides se ajustó bien a las características de los datos.
 
-Segmentación y Estrategias Personalizadas: La segmentación de los docentes en diferentes clusters permite la creación de estrategias de desarrollo profesional más personalizadas. Los programas de formación pueden ser adaptados para abordar las necesidades específicas de cada grupo, mejorando así la calidad de la enseñanza en toda la institución.
+Finalmente se realizó un análisis comparativo sobre la columna clasificadora que era la del instructor o docente para identificar si existen algunos factores representativos sobre los clusters pero sin embargo no se obtuvieron analisis relevantes sobre los gráficos y resultados de las tablas comparativas. Entonces se procedió a generar un análisis distinto en donde de forma gráfica procedemos a generar una visualización de cada una de las preguntas, donde por en cada grafico contenga el conteo de las respuestas por cada opción elegida del uno al cinco y segmentado por el tipo de cluster. Obtuvimos un mejor panorama visual para establecer resultados que permitan generar interpretaciones con un respaldo ciertamente significativo. En la siguiente gráfica se muestra el número de respuestas obtenidas, organizadas por clúster y desglosadas por cada uno de los valores asignados a las preguntas finales analizadas (Q25 a Q28).
 
-En resumen, el análisis de los datos de la encuesta ha proporcionado una visión clara de los patrones de enseñanza entre los docentes y ha destacado áreas clave para mejorar. Estas conclusiones pueden guiar la toma de decisiones para fortalecer la formación docente y, en última instancia, mejorar la experiencia de aprendizaje de los estudiantes.
+```{r, echo=FALSE, fig.pos='H', out.width="100%", fig.align='center'}
+knitr::include_graphics("clustersq.png")
+```
+
+Tal y como se refleja en la gráfica, existen tres grupos distintos de percepciones estudiantiles sobre la calidad de la enseñanza. El clúster 0 agrupa a estudiantes que califican la experiencia de manera moderada, con respuestas mayormente en los valores 3 y 4, lo que sugiere una satisfacción general pero tal vez con reconocimiento de áreas para mejora. El clúster 1 representa a los estudiantes más insatisfechos, quienes seleccionaron principalmente los valores 1 y 2, lo que indica percepciones negativas sobre múltiples aspectos del curso, materia dictada o hacia los profesores. Por último, el clúster 2 incluye a los estudiantes más satisfechos, con un índice alto de respuestas en el valor 5, reflejando una alta satisfacción con la enseñanza o tal vez una falta de interes hacia la evaluación del docente debido a un apego hacia el curso o materia impartida por el profesor.
+
+En el análisis general, se observa que los estudiantes en el clúster 2 muestran una satisfacción consistente en todos los aspectos evaluados, destacándose en preguntas relacionadas con la preparación del instructor, la claridad en la enseñanza y la evaluación del curso. Por otro lado, el clúster 1 revela preocupaciones específicas en áreas como la claridad del discurso y la eficacia del tiempo de clase, donde se perciben más deficiencias. El clúster 0 sugiere una percepción positiva pero no sobresaliente, con un enfoque en la mejora continua. Estos patrones permiten identificar no solo las áreas de éxito, sino también aquellas que requieren atención para elevar la satisfacción general de los estudiantes.
 
 # Conclusión
 
+El análisis de las respuestas agrupadas por clústeres ha revelado patrones claros en la percepción de los estudiantes sobre la calidad de la enseñanza. Los clústeres identificados muestran una variabilidad significativa en la satisfacción estudiantil: el clúster 0 representa a estudiantes moderadamente satisfechos, el clúster 1 agrupa a aquellos con una opinión negativa y el clúster 2 agrupa a los estudiantes muy satisfechos. Esto sugiere que, aunque una la mayor parte de estudiantes tienen una percepción positiva sobre la enseñanza, existe una fracción significativa que identifica áreas de mejora importantes, particularmente en la claridad del discurso, el uso efectivo del tiempo en clase, y la estructura de las asignaciones y evaluaciones.
+
+El uso de técnicas de clústering permitió segmentar a los estudiantes en grupos homogéneos según sus respuestas. Esto proporcionó una visión más precisa de cómo diferentes aspectos de la enseñanza son percibidos. La interpretación de los clústeres, en conjunto con el análisis visual de las distribuciones de respuestas, permitió identificar patrones relevantes que de otro modo podrían haber quedado ocultos en un análisis descriptivo de los datos.
+
+En cuanto al trabajo futuro, sería valioso realizar un análisis más profundo, integrando otras variables demográficas o contextuales que puedan influir en la percepción de los estudiantes. También se podría explorar el uso de modelos predictivos, como la regresión logística, para identificar qué factores específicos están más fuertemente asociados con la pertenencia a cada clúster, lo que podría guiar mejoras específicas en la enseñanza. Además, un seguimiento a traves del tiempo podría ayudar a evaluar cómo las intervenciones basadas en este análisis afectan la satisfacción estudiantil en el tiempo.
+
 # Contribuciones
+
+En el presente trabajo, ambos integrantes participaron activamente en todas las etapas del proyecto. Colaboramos en la generación del código para el análisis, realizamos juntos la visualización de los resultados en una computadora y redactamos varios párrafos de cada sección del informe. Debido a nuestra participación conjunta en todas las fases del proceso, la contribución de cada uno sobre el trabajo fue equitativa.
 
 # Referencias
 
