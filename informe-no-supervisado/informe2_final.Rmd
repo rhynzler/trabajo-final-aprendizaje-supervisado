@@ -85,6 +85,11 @@ resultados e impulsa la necesidad de cambio necesario. (Bill & Melinda
 Gates Foundation, 2015; Dhar, 2013; Tichnor-Wagner, Wachen, Cannata y
 Cohen-Vogel, 2017)
 
+# Descripción del dataset
+
+El conjunto de datos utilizado en este trabajo esta compuesto por 33
+columnas, las cuales son descritas en la siguiente tabla:
+
 | Nombre     | Descripción                                                                                                                                         | Tipo     |
 |----------|----------------------------------------------------|----------|
 | instr      | Identificador del docente                                                                                                                           | Numérico |
