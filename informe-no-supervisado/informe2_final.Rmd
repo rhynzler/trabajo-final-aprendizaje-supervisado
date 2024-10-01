@@ -127,16 +127,20 @@ columnas, las cuales son descritas en la siguiente tabla:
 | Q28        | El instructor trató a todos los estudiantes de manera correcta y objetiva.                                                                          | Númerico |
 
 A partir de las columnas anteriores, se han seleccionado las siguientes
-columnas que van en dirección al objetivo de este trabajo: **instr,
-Q13-Q28**. La primera columna servirá como etiqueta de nuestro modelo de
-clusterización. Las preguntas desde la 13 hasta la 28 se centran en
-aspectos clave de la enseñanza del docente como conocimiento,
+columnas que van en dirección al objetivo de este trabajo: **Q1-Q28**. 
+Las preguntas desde la 1 hasta la 12 tratan sobre la calidad de la clase
+y las preguntas desde la 13 hasta la 28 se centran en la calificación del
+renidmiento del profesor que trata sobre aspectos clave de la enseñanza del docente como conocimiento,
 preparación, comprensión, fluidez de enseñanza, participación, forma de
 evaluar a los estudiantes. No se realizó ningún tipo de preprocesamiento
-o transformación a los datos, ya que estos se encuentran limpios y sin
-valores ausentes, además las preguntas toman valores desde el 1 al 5.
-Donde se asignó 1 = Nunca, 2 = Casi nunca, 3 = A veces, 4 = Casi
-siempre, 5 = Siempre.
+o transformación a los datos, excepto por la eliminación de instancias de aquellos estudiantes
+que poseen un nivel de asistencia igual a cero, debido a que estos datos no 
+serían del todo certeros y podría dar cabida a interpretaciones erroneas. 
+Los datos se encuentran limpios y sin valores ausentes ni atípicos, además las preguntas 
+toman valores desde el 1 al 5. Donde se asignó 1 = Nunca, 2 = Casi nunca, 3 = A veces, 4 = Casi
+siempre, 5 = Siempre. Las variables como instructor, clase, número de veces
+que el estudiante ha repetido el curso, la asistencia y la dificultad serán 
+utilizadas para el análisis de los resultados obtenidos en relacion con los clusters.
 
 # Metodología
 
